@@ -41,7 +41,7 @@ Flask-Geolocation-Capture/
 1. **Clone the repo**
 ```bash
 git clone https://github.com/yourusername/Flask-Geolocation-Capture.git
-cd flask-geolocation-capture
+cd Flask-Geolocation-Capture
 ```
 
 2. **Create virtual environment (optional)**
@@ -110,4 +110,5 @@ This project is for educational/demo purposes only. Not responsible for misuse.
 
 ## 💬 Support or Feedback?
 
-If you want to add Telegram/Email/Webhook support, or deploy this publicly, open an issue or contact the author.
+If you'd like to add Telegram, Email, or Webhook support — or deploy this project publicly — feel free to open an issue or contact the author.
+Created by [KUDDAVPN](https://t.me/mataberiyo)
