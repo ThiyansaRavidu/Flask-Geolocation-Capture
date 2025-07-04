@@ -25,7 +25,7 @@ Flask-Geolocation-Capture/
 ├── app.py               # Flask backend
 ├── admin.json           # Admin credentials
 ├── scr
-    └── flask_geolocation_diagram.png # Architecture image
+│   └── flask_geolocation_diagram.png # Architecture image
 ├── templates/
 │   ├── index.html       # Landing page (auto-capture)
 │   ├── redirect.html    # Post-capture thank you
