@@ -2,7 +2,7 @@
 
 A Python + Flask project that automatically captures a visitor's **location**, **IP address**, **browser info**, and **unique client ID**, then logs them for review. Admins can view entries in a secure dashboard with direct Google Maps links.
 
-![Preview Diagram](flask_geolocation_diagram.png)
+![Preview Diagram](/scr/flask_geolocation_panel.png)
 
 ---
 
@@ -21,7 +21,7 @@ A Python + Flask project that automatically captures a visitor's **location**, *
 ## 📂 Project Structure
 
 ```
-flask_geolocation_project/
+Flask-Geolocation-Capture/
 ├── app.py               # Flask backend
 ├── admin.json           # Admin credentials
 ├── scr
@@ -40,7 +40,7 @@ flask_geolocation_project/
 
 1. **Clone the repo**
 ```bash
-git clone https://github.com/yourusername/flask-geolocation-capture.git
+git clone https://github.com/yourusername/Flask-Geolocation-Capture.git
 cd flask-geolocation-capture
 ```
 
@@ -75,13 +75,13 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Visit: [http://localhost:5000](http://localhost:5000)
+Visit: [http://localhost:80](http://localhost:80)
 
 ---
 
 ## 🔐 Admin Panel
 
-Go to: [http://localhost:5000/panel](http://localhost:5000/panel)  
+Go to: [http://localhost:5000/panel](http://localhost:80/panel)  
 Use the credentials from `admin.json` to login.
 
 You can view all captured logs with location, accuracy, and browser details.
@@ -90,7 +90,7 @@ You can view all captured logs with location, accuracy, and browser details.
 
 ## 🧪 Test It Live
 
-1. Share the main link (e.g. `http://localhost:5000`)
+1. Share the main link (e.g. `http://localhost:80`)
 2. Ask a user to open it from their browser
 3. Data gets silently logged and appears in the panel
 
