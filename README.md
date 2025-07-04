@@ -81,7 +81,7 @@ Visit: [http://localhost:80](http://localhost:80)
 
 ## 🔐 Admin Panel
 
-Go to: [http://localhost:5000/panel](http://localhost:80/panel)  
+Go to: [http://localhost:80/panel](http://localhost:80/panel)  
 Use the credentials from `admin.json` to login.
 
 You can view all captured logs with location, accuracy, and browser details.
