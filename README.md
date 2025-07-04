@@ -24,13 +24,14 @@ A Python + Flask project that automatically captures a visitor's **location**, *
 flask_geolocation_project/
 ├── app.py               # Flask backend
 ├── admin.json           # Admin credentials
+├── scr
+    └── flask_geolocation_diagram.png # Architecture image
 ├── templates/
 │   ├── index.html       # Landing page (auto-capture)
 │   ├── redirect.html    # Post-capture thank you
 │   └── panel.html       # Admin panel (dark UI)
 ├── click_logs.csv       # Auto-generated log file
-├── requirements.txt     # Python packages
-└── flask_geolocation_diagram.png # Architecture image
+└── requirements.txt     # Python packages
 ```
 
 ---
