@@ -40,7 +40,7 @@ Flask-Geolocation-Capture/
 
 1. **Clone the repo**
 ```bash
-git clone https://github.com/yourusername/Flask-Geolocation-Capture.git
+git clone https://github.com/ThiyansaRavidu/Flask-Geolocation-Capture.git
 cd Flask-Geolocation-Capture
 ```
 
